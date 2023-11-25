@@ -35,38 +35,17 @@ jobs:
     outputs:
       publishversion: ${{ steps.publish_app.outputs.newVersion }}
 
-  test:
-    name: Run ATF in Test
+  apply-changes:
+    name: Apply Changes to Install Instance
     runs-on: ubuntu-latest
-    needs: build
-    
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+
     steps:
-      - name: ServiceNow CI/CD Install App
-        id: install_app
-        uses: ServiceNow/sncicd-install-app@2.0.0
-        with:
-          version: ${{ needs.build.outputs.publishversion }}
+      - name: ServiceNow CI/CD Apply Changes to Install Instance
+        uses: ServiceNow/sncicd-apply-changes@2.0.0
         env:
           nowUsername: admin
           nowPassword: DHR@9Ksajd8!
+          nowSourceInstance: https://dev186230.service-now.com/
           nowInstallInstance: https://dev186741.service-now.com/
           appSysID: ${{ secrets.SN_APP_SYSID }}
-
-      - name: ServiceNow CI/CD Run ATF Test Suite
-        uses: ServiceNow/sncicd-tests-run@2.0.0
-        with:
-          testSuiteSysId: ${{ secrets.SN_ATFTESTSUITE_SYSID }}
-        env:
-          nowUsername: admin
-          nowPassword: DHR@9Ksajd8!
-          nowInstallInstance: https://dev186741.service-now.com/
-
-      - name: ServiceNow CI/CD Rollback App
-        if: ${{ failure() && steps.install_app.outputs.rollbackVersion }}
-        uses: ServiceNow/sncicd-rollback-app@2.0.0
-        with:
-          version: ${{ steps.install_app.outputs.rollbackVersion }}
-        env:
-          nowUsername: admin
-          nowPassword: DHR@9Ksajd8!
-          nowInstallInstance: https://dev186741.
