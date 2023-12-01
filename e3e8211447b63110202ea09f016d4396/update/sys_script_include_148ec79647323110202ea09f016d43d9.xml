@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_929106_sumanth.testingggg</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description>testt</description>
+        <name>testingggg</name>
+        <script><![CDATA[var testingggg = Class.create();
+testingggg.prototype = {
+    initialize: function() {
+    },
+
+    type: 'testingggg'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2023-12-01 15:57:56</sys_created_on>
+        <sys_id>148ec79647323110202ea09f016d43d9</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>testingggg</sys_name>
+        <sys_package display_value="SUmanth" source="x_929106_sumanth">e3e8211447b63110202ea09f016d4396</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="SUmanth">e3e8211447b63110202ea09f016d4396</sys_scope>
+        <sys_update_name>sys_script_include_148ec79647323110202ea09f016d43d9</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-12-01 15:57:56</sys_updated_on>
+    </sys_script_include>
+</record_update>
